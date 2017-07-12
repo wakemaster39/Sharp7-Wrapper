@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Globalization;
 using System.Reflection;
+using Sharp7.Extensions;
 
 namespace Sharp7.Types
 {
@@ -19,7 +20,7 @@ namespace Sharp7.Types
         {
             double numBytes = 0.0;
 
-            System.Reflection.FieldInfo[] infos = structType.GetFields();
+            System.Reflection.FieldInfo[] infos = structType.GetTypeInfo().GetAllFields().ToArray();
             foreach (System.Reflection.FieldInfo info in infos)
             {
                 switch (info.FieldType.Name)
@@ -80,7 +81,7 @@ namespace Sharp7.Types
             double numBytes = 0.0;
             object structValue = Activator.CreateInstance(structType);
 
-            System.Reflection.FieldInfo[] infos = structValue.GetType().GetFields();
+            System.Reflection.FieldInfo[] infos = structValue.GetType().GetTypeInfo().GetAllFields().ToArray();
             foreach (System.Reflection.FieldInfo info in infos)
             {
                 switch (info.FieldType.Name)
@@ -182,7 +183,7 @@ namespace Sharp7.Types
             int bitPos = 0;
             double numBytes = 0.0;
 
-            System.Reflection.FieldInfo[] infos = type.GetFields();
+            System.Reflection.FieldInfo[] infos = type.GetTypeInfo().GetAllFields().ToArray();
             foreach (System.Reflection.FieldInfo info in infos)
             {
                 bytes2 = null;

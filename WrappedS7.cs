@@ -31,6 +31,12 @@ namespace Sharp7
             return ParseBytes(type, recievedBytes, amount);
         }
 
+        public int Write(DataType area, int database, int startAddress, byte[] value)
+        {
+            return _client.WriteArea((int) area, database, startAddress, value.Length, 0x02, value);
+        }
+
+
         private int RecievedDataLength(VarType type, int amount)
         {
             return S7.DataSizeByte(VarTypeToS7(type)) * amount;

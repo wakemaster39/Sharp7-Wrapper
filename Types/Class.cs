@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
+using Sharp7.Extensions;
 
 namespace Sharp7.Types
 {
@@ -17,7 +19,7 @@ namespace Sharp7.Types
         {
             double numBytes = 0.0;       
                             
-            var properties = classType.GetProperties();
+            var properties =  classType.GetTypeInfo().GetAllProperties().ToArray();
             foreach (var property in properties)
             {
                 switch (property.PropertyType.Name)
@@ -79,7 +81,7 @@ namespace Sharp7.Types
             double numBytes = 0.0;
 
 
-            var properties = sourceClass.GetType().GetProperties();
+            var properties = sourceClass.GetType().GetTypeInfo().GetAllProperties().ToArray();
             foreach (var property in properties)
             {
                 switch (property.PropertyType.Name)
@@ -181,7 +183,7 @@ namespace Sharp7.Types
             int bitPos = 0;
             double numBytes = 0.0;
 
-            var properties = sourceClass.GetType().GetProperties();
+            var properties = type.GetTypeInfo().GetAllProperties().ToArray();
             foreach (var property in properties)
             {
                 bytes2 = null;
