@@ -41,6 +41,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 //------------------------------------------------------------------------------
 // If you are compiling for UWP verify that WINDOWS_UWP or NETFX_CORE are 
 // defined into Project Properties->Build->Conditional compilation symbols
@@ -417,7 +418,7 @@ namespace Sharp7
                 SizeAvail = TCPSocket.Available;
                 while ((SizeAvail < Size) && (!Expired))
                 {
-                    Thread.Sleep(2);
+                    Task.Delay(2).Wait();
                     SizeAvail = TCPSocket.Available;
                     Expired = Environment.TickCount - Elapsed > Timeout;
                     // If timeout we clean the buffer
